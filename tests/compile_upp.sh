@@ -28,8 +28,7 @@ set_defaults() {
     more=" "
     verbose_opt=""
     debug_opt=""
-  # compiler="intel"
-    compiler="gnu"
+    compiler="intel"
 }
 
 usage() {
@@ -115,13 +114,18 @@ fi
 
 cmake_opts=" -DCMAKE_INSTALL_PREFIX=$prefix"${nemsio_opt}${wrfio_opt}${gtg_opt}${ifi_opt}${debug_opt}${build_ifi_executables_opt}${more}
 
+compiler=${compiler,,}
+
 #Load required modulefiles
 if [[ $MACHINE_ID != "unknown" ]]; then
    if [ $MACHINE_ID == "wcoss2"  -o $MACHINE_ID == "wcoss2_a" ]; then
       module reset
    elif [ $MACHINE_ID == "container" ]; then
-    # source /usr/lmod/lmod/init/bash
-      source /opt/ohpc/admin/lmod/lmod/init/bash
+      if [[ ${compiler} == gnu ]] ; then
+         source /opt/ohpc/admin/lmod/lmod/init/bash
+      else
+         source /usr/lmod/lmod/init/bash
+      fi
       module purge
    elif [[ "$MACHINE_ID" =~ gaea* ]] ; then
        module reset

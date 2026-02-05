@@ -12,7 +12,7 @@ load(pathJoin("stack-oneapi", stack_oneapi_ver))
 load(pathJoin("stack-intel-oneapi-mpi", stack_impi_ver))
 load(pathJoin("cmake", cmake_ver))
 
-load("upp_common")
+load("upp_common4container")
 
 setenv("CC", "mpiicx")
 setenv("CXX", "mpiicpx")

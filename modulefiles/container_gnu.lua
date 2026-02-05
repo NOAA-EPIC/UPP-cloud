@@ -14,7 +14,7 @@ cmake_ver=os.getenv("cmake_ver") or "3.27.9"
 
 load(pathJoin("cmake", cmake_ver))
 
-load("upp_common")
+load("upp_common4container")
 
 setenv("CC", "mpicc")
 setenv("CXX", "mpic++")
